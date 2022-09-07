@@ -21,7 +21,7 @@ jobs:
           type: now
           from_branch: feat/test
           target_branch: dev/test
-          github_token: $GITHUB_TOKEN
+          github_token: ${{ github.token }}
 
   createPullRequest:
     runs-on: ubuntu-latest
