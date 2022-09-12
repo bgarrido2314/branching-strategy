@@ -23,3 +23,4 @@ const myPackage = require('@codertocat/hello-world-npm');
 myPackage.helloWorld();
 ```
 
+hello world
