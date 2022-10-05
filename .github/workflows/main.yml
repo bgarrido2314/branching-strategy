@@ -50,7 +50,7 @@ jobs:
     needs: Current-Branch
     steps:
       - uses: actions/checkout@master
-      - name: Merge estable and preproduccion
+      - name: Merge preproduccion and main
         uses: devmasx/merge-branch@master
         with:
           type: now
@@ -59,13 +59,14 @@ jobs:
           github_token: ${{ env.GITHUB_TOKEN }}
           message: '${{needs.Current-Branch.outputs.actor}}Merge preproduccion ${{needs.Current-Branch.outputs.proyect}} and main'
 
-  CreatePullRequest:
+  CreateFork:
     runs-on: ubuntu-latest
     environment:
       name: main/${{needs.Current-Branch.outputs.proyect}}
     needs: [Current-Branch, Sync-Branch]
     steps:
-      - uses: actions/checkout@v3
-      - name: Make changes to pull request
-        run:
-          curl -X POST -u ${{ env.GITHUB_TOKEN }}:x-oauth-basic -H "Accept:application/vnd.github+json" https://api.github.com/repos/bgarrido2314/branching-strategy/pulls -d '{"title":"Main-Estable/${{needs.Current-Branch.outputs.proyect}}","body":"Please pull these new changes in!","head":"main","base":"estable/${{needs.Current-Branch.outputs.proyect}}"}'
+      - uses: tgymnich/fork-sync@v1.6.3
+        with:
+          owner: llvm
+          base: estable/${{needs.Current-Branch.outputs.proyect}}
+          head: main
