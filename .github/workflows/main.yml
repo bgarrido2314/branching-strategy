@@ -67,6 +67,5 @@ jobs:
     steps:
       - uses: tgymnich/fork-sync@v1.6.3
         with:
-          owner: llvm
           base: estable/${{needs.Current-Branch.outputs.proyect}}
           head: main
