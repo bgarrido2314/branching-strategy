@@ -67,5 +67,6 @@ jobs:
     steps:
       - uses: tgymnich/fork-sync@v1.6.3
         with:
+          token: ${{ secrets.TOKEN }}
           base: estable/${{needs.Current-Branch.outputs.proyect}}
           head: main
