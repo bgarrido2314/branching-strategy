@@ -15,3 +15,5 @@ Or add this package to your `package.json` file:
     "@codertocat/hello-world-npm": "1.0.0"
   }
 ```
+
+hello world from celula2
